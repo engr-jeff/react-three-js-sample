@@ -2,35 +2,35 @@ import { useFrame, extend, useThree } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
+import Custom from "./Custom";
 
 extend({ OrbitControls: OrbitControls });
 const Scene = () => {
-  const cubeRef = useRef();
-  const planeRef = useRef();
   const { gl, camera } = useThree();
-  camera.position.x = 5;
 
   // should have consistent UI for different frame rates
   // can be solve using deltaTime or clock class
-  useFrame((state, dT) => {
-    // cubeRef.current.rotation.y += dT;
-    // planeRef.current.rotation.y += dT;
-    state.camera.position.x = Math.sin(state.clock.elapsedTime);
-  });
+  useFrame((state, dT) => {});
 
   return (
     <>
+      {/* <axesHelper args={[3]} />
+      <gridHelper args={[20, 20, 0xff0000, "cyan"]} /> */}
+
+      <Custom />
       <orbitControls args={[camera, gl.domElement]} />
-      <mesh ref={planeRef} position-x={-2}>
-        <planeGeometry args={[2, 2]} />
-        <meshBasicMaterial color="orange" side={THREE.DoubleSide} />
-      </mesh>
-      <mesh ref={cubeRef}>
+      {/* <mesh>
         <boxGeometry />
-        <meshBasicMaterial color="#7A00CA" />
-      </mesh>
+        <meshBasicMaterial color="orange" />
+      </mesh> */}
     </>
   );
 };
 
 export default Scene;
+
+//* Docs for creating custom geometry
+// 1.) Create a Float32Array
+// 2.) Put the values in the array
+// 3.) Create a BufferAttribute using the Float32Array
+// 4.) Add the BufferAttribute to the attributes of the BufferGeometry
