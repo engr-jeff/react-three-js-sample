@@ -1,6 +1,10 @@
 import * as THREE from "three";
 const Custom = () => {
-  const positionArray = new Float32Array([0, 0, 0, 0, 1, 0, 1, 0, 0]);
+  const positionArray = new Float32Array([
+    0, 0, 0,
+    0, 1, 0,
+    1, 0, 0,
+  ]);
   return (
     <mesh>
       <bufferGeometry>
